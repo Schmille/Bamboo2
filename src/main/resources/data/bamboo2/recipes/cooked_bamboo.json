@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:smelting",
+  "conditions": [
+    {
+      "type": "bamboo2:cookable"
+    }
+  ],
+  "ingredient": {
+    "item": "minecraft:bamboo"
+  },
+  "result": "bamboo2:cooked_bamboo",
+  "experience": 0.25,
+  "cookingtime": 200
+}

@@ -1,0 +1,10 @@
+modLoader="javafml" #mandatory
+loaderVersion="[25,)" #mandatory
+credits="" #optional
+[[mods]] #mandatory
+modId="bamboo2" #mandatory
+version="1.14.4_0.2" #mandatory
+displayName="Bamboo 2: Modded Boogaloo" #mandatory
+displayURL="https://github.com/Schmille/Bamboo2" #optional
+authors="Schmille aka CallMeSchmille" #optional
+description='''Highly configurable mod, that makes bamboo eatable, cookable and compostable.'''

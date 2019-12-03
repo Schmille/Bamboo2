@@ -1,0 +1,5 @@
+{
+  "conditions": {
+    "cookable": "schmille.bamboo2.common.crafting.CookCondition"
+  }
+}

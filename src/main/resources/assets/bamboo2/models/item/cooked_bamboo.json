@@ -1,0 +1,6 @@
+{
+    "parent": "item/handheld",
+    "textures": {
+        "layer0": "bamboo2:item/cooked_bamboo"
+    }
+}
