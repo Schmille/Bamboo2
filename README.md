@@ -3,7 +3,7 @@
 #### General information
 I initially created this mod when I found out that you can not compost Bamboo in 1.14. 
 
-Then I thought "Isn't Bamboo eatable?", so I looked it up and confirmed that there are *some* eatable species of bamboo.
+Then I thought "Isn't Bamboo edible?", so I looked it up and confirmed that there are *some* edible species of bamboo.
 
 ##### This small mod changes/adds the following:
  * Bamboo can now be composted
