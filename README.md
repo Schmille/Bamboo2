@@ -1,4 +1,4 @@
-#Bamboo 2: Modded Boogaloo
+# Bamboo 2: Modded Boogaloo
 
 #### General information
 I initially created this mod when I found out that you can not compost Bamboo in 1.14. 
