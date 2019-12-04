@@ -12,7 +12,7 @@ Then I thought "Isn't Bamboo edible?", so I looked it up and confirmed that ther
  * Bamboo can be eaten raw
     * Can be disabled in config
     * applies slow effect by default
-        * slow effect can be configured/disabled
+    * slow effect can be configured/disabled
  * Bamboo can be cooked in the furnace
     * Can be disabled in config
     
