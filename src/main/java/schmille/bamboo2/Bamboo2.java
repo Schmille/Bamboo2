@@ -12,6 +12,8 @@ import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLLoadCompleteEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import schmille.bamboo2.common.Configuration;
 import schmille.bamboo2.common.crafting.CookCondition;
 import schmille.bamboo2.common.foodstuff.ModFood;
@@ -21,6 +23,8 @@ import schmille.bamboo2.common.util.NumberUtil;
 @Mod(Ref.MOD_ID)
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
 public class Bamboo2 {
+
+    private static final Logger LOGGER = LogManager.getLogger();
 
     public Bamboo2()
     {
@@ -51,6 +55,10 @@ public class Bamboo2 {
     public static void registerItems(RegistryEvent.Register<Item> event)
     {
         event.getRegistry().register(new CookedBambooItem());
+    }
+
+    public static Logger getLogger() {
+        return LOGGER;
     }
 
 }

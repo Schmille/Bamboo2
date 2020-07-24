@@ -8,6 +8,7 @@ public class Configuration {
     public static final Composter COMPOSTER = new Composter(BUILDER);
     public static final RawBamboo RAW_BAMBOO = new RawBamboo(BUILDER);
     public static final CookedBamboo COOKED_BAMBOO = new CookedBamboo(BUILDER);
+    public static final BambooSpread BAMBOO_SPREAD = new BambooSpread(BUILDER);
     //
     public static ForgeConfigSpec SPEC = BUILDER.build();
 
@@ -25,7 +26,7 @@ public class Configuration {
                     .define("can_decompose",true);
 
             compost_chance = builder
-                    .comment("Sets the chance for Bamboo to partly fill a composter. The higher the value, the less Bamboo is needed to fill a composter.\n(Leaves = 0.3, Sugar Cane = 0.5, Wheat = 0.65, Bread = 0.85, Cake = 1.0)")
+                    .comment("Sets the chance for bamboo to partly fill a composter. The higher the value, the less bamboo is needed to fill a composter.\n(Leaves = 0.3, Sugar Cane = 0.5, Wheat = 0.65, Bread = 0.85, Cake = 1.0)")
                     .define("compose_chance",0.3D);
 
             builder.pop();
@@ -59,7 +60,7 @@ public class Configuration {
                     .comment("Modifier for how fast the hungerbar will deplete (lower means faster)")
                     .define("raw_saturation_value",0.3D);
             builder.pop();
-            builder.push("Raw Bamboo slowness");
+            builder.push("Raw bamboo slowness");
 
             apply_slowness = builder
                     .comment("If true, eating raw bamboo will apply slowness")
@@ -106,5 +107,52 @@ public class Configuration {
 
             builder.pop();
         }
+    }
+
+    public static class BambooSpread
+    {
+        public final ForgeConfigSpec.ConfigValue<Boolean> do_bamboo_spread;
+        public final ForgeConfigSpec.ConfigValue<Integer> spread_x;
+        public final ForgeConfigSpec.ConfigValue<Integer> spread_z;
+        public final ForgeConfigSpec.ConfigValue<Integer> spread_y_top;
+        public final ForgeConfigSpec.ConfigValue<Integer> spread_y_bottom;
+        public final ForgeConfigSpec.ConfigValue<Double> spread_chance;
+        public final ForgeConfigSpec.ConfigValue<String> spread_to;
+
+        public BambooSpread(ForgeConfigSpec.Builder builder)
+        {
+            builder.push("Bamboo spread");
+
+            do_bamboo_spread = builder
+                    .comment("If true, bamboo will spread to available nearby blocks")
+                    .define("do_bamboo_spread", true);
+
+            spread_x = builder
+                    .comment("X-raduis to for spread")
+                    .define("spread_x", 4);
+
+            spread_z = builder
+                    .comment("Z-radius for spread")
+                    .define("spread_z", 4);
+
+            spread_y_top = builder
+                    .comment("Number of blocks bamboo can spread upwards")
+                    .define("spread_y_top", 2);
+
+            spread_y_bottom = builder
+                    .comment("Number of block bamboo can spread downward")
+                    .define("spread_y_bottom", 0);
+
+            spread_chance = builder
+                    .comment("Chance that bamboo will spread min = 0.01, max = 1.0")
+                    .defineInRange("spread_chance",0.1, 0.01, 1.0);
+
+            spread_to = builder
+                    .comment("Blocks that bamboo can spread to")
+                    .define("spread_to","minecraft:grass_block, minecraft:sand, minecraft:dirt,minecraft:coarse_dirt, minecraft:podzol");
+
+            builder.pop();
+        }
+
     }
 }
