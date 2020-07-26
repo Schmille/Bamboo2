@@ -21,7 +21,7 @@ public abstract class BambooUtil {
 
     public static void doSpread(World world, BlockPos pos) {
         Iterable<BlockPos> i = BlockPos.getAllInBoxMutable(
-               pos.add(-Configuration.BAMBOO_SPREAD.spread_x.get(), Configuration.BAMBOO_SPREAD.spread_y_bottom.get(), -Configuration.BAMBOO_SPREAD.spread_z.get()),
+               pos.add(-Configuration.BAMBOO_SPREAD.spread_x.get(), -Configuration.BAMBOO_SPREAD.spread_y_bottom.get(), -Configuration.BAMBOO_SPREAD.spread_z.get()),
                pos.add(Configuration.BAMBOO_SPREAD.spread_x.get(), Configuration.BAMBOO_SPREAD.spread_y_top.get(), Configuration.BAMBOO_SPREAD.spread_z.get()));
 
         List<BlockPos> positions = new LinkedList<>();
@@ -69,6 +69,9 @@ public abstract class BambooUtil {
             return;
 
         if(!(event.getState().getBlock() instanceof BambooBlock))
+            return;
+
+        if(Configuration.BAMBOO_SPREAD.only_spread_grown.get() && ((BambooBlock) event.getState().getBlock()).canGrow(event.getWorld().getWorld(), event.getPos(), event.getState(), event.getWorld().getWorld().isRemote))
             return;
 
             double chance = event.getWorld().getWorld().getRandom().nextInt(100) / 100D;

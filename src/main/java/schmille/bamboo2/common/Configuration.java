@@ -112,6 +112,7 @@ public class Configuration {
     public static class BambooSpread
     {
         public final ForgeConfigSpec.ConfigValue<Boolean> do_bamboo_spread;
+        public final ForgeConfigSpec.ConfigValue<Boolean> only_spread_grown;
         public final ForgeConfigSpec.ConfigValue<Integer> spread_x;
         public final ForgeConfigSpec.ConfigValue<Integer> spread_z;
         public final ForgeConfigSpec.ConfigValue<Integer> spread_y_top;
@@ -127,6 +128,11 @@ public class Configuration {
                     .comment("If true, bamboo will spread to available nearby blocks")
                     .define("do_bamboo_spread", true);
 
+            only_spread_grown = builder
+                    .comment("If true bamboo will only spread once from fully grown shoots.\n" +
+                            "Warning: If you disable this setting it is highly recommended to drastically reduce spread chance!")
+                    .define("only_spread_grown", true);
+
             spread_x = builder
                     .comment("X-raduis to for spread")
                     .define("spread_x", 4);
@@ -141,11 +147,11 @@ public class Configuration {
 
             spread_y_bottom = builder
                     .comment("Number of block bamboo can spread downward")
-                    .define("spread_y_bottom", 0);
+                    .define("spread_y_bottom", 1);
 
             spread_chance = builder
                     .comment("Chance that bamboo will spread min = 0.01, max = 1.0")
-                    .defineInRange("spread_chance",0.1, 0.01, 1.0);
+                    .defineInRange("spread_chance",0.6, 0.01, 1.0);
 
             spread_to = builder
                     .comment("Blocks that bamboo can spread to")
