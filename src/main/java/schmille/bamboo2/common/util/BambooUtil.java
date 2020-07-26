@@ -6,7 +6,6 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -16,12 +15,9 @@ import schmille.bamboo2.common.Configuration;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Random;
 
 @Mod.EventBusSubscriber
 public abstract class BambooUtil {
-
-    private static final Random random = new Random();
 
     public static void doSpread(World world, BlockPos pos) {
         Iterable<BlockPos> i = BlockPos.getAllInBoxMutable(
@@ -75,7 +71,7 @@ public abstract class BambooUtil {
         if(!(event.getState().getBlock() instanceof BambooBlock))
             return;
 
-            double chance = random.nextInt(100) / 100D;
+            double chance = event.getWorld().getWorld().getRandom().nextInt(100) / 100D;
 
             if(chance <= Configuration.BAMBOO_SPREAD.spread_chance.get()) {
                 Bamboo2.getLogger().debug(String.format("onCropGrowth: Bamboo spread triggered with value (%.2f <= %.2f) on Block %d %d %d",
@@ -83,7 +79,5 @@ public abstract class BambooUtil {
                 doSpread(event.getWorld().getWorld(), findRoot(event.getWorld().getWorld(), event.getPos()));
         }
     }
-
-
 
 }
