@@ -23,8 +23,7 @@ public abstract class ConfigBlockUtil {
 
         String[] split = Configuration.BAMBOO_SPREAD.spread_to.get().split(",");
         for(String s : split)
-            if(ResourceLocation.isResouceNameValid(s.trim()))
-                blocks.add(ResourceLocation.tryCreate(s.trim()));
+            blocks.add(ResourceLocation.tryCreate(s.trim()));
     }
 
 }
