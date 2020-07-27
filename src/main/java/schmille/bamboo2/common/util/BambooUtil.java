@@ -37,7 +37,7 @@ public abstract class BambooUtil {
 
                 if(ConfigBlockUtil.canSpreadTo(down.getBlock())) {
                     world.setBlockState(bp, Blocks.BAMBOO_SAPLING.getDefaultState());
-                    Bamboo2.getLogger().debug(String.format("Placed bamboo sapling at %d %d %d", bp.getX(), bp.getY(), bp.getZ()));
+                    Bamboo2.getLogger().debug(String.format("doSpread: Placed bamboo sapling at %d %d %d", bp.getX(), bp.getY(), bp.getZ()));
                     break;
                 }
             }
@@ -75,9 +75,8 @@ public abstract class BambooUtil {
             return;
 
             double chance = NumberUtil.randomChanceFromPercentile(Configuration.BAMBOO_SPREAD.spread_chance.get(), event.getWorld().getRandom());
-
             if(chance <= Configuration.BAMBOO_SPREAD.spread_chance.get()) {
-                Bamboo2.getLogger().debug(String.format("onCropGrowth: Bamboo spread triggered with value (%.2f <= %.2f) on Block %d %d %d",
+                Bamboo2.getLogger().debug(String.format("onCropGrowth: Bamboo spread triggered with value (%f <= %f) on Block %d %d %d",
                         chance, Configuration.BAMBOO_SPREAD.spread_chance.get(), event.getPos().getX(), event.getPos().getY(), event.getPos().getZ()));
                 doSpread(event.getWorld().getWorld(), findRoot(event.getWorld().getWorld(), event.getPos()));
         }

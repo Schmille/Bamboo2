@@ -1,6 +1,11 @@
 package schmille.bamboo2.common;
 
+import com.electronwill.nightconfig.core.file.CommentedFileConfig;
+import com.electronwill.nightconfig.core.io.ParsingMode;
+import com.electronwill.nightconfig.core.io.WritingMode;
 import net.minecraftforge.common.ForgeConfigSpec;
+import schmille.bamboo2.Bamboo2;
+import schmille.bamboo2.Ref;
 
 public class Configuration {
     private static final ForgeConfigSpec.Builder BUILDER = new ForgeConfigSpec.Builder();
@@ -10,7 +15,7 @@ public class Configuration {
     public static final CookedBamboo COOKED_BAMBOO = new CookedBamboo(BUILDER);
     public static final BambooSpread BAMBOO_SPREAD = new BambooSpread(BUILDER);
     //
-    public static ForgeConfigSpec SPEC = BUILDER.build();
+    public static final ForgeConfigSpec SPEC = BUILDER.build();
 
     public static class Composter
     {
@@ -159,6 +164,19 @@ public class Configuration {
 
             builder.pop();
         }
+    }
 
+    public static void loadConfig() {
+        final String path = String.format("%s-common.toml", Ref.MOD_ID);
+        Bamboo2.getLogger().info("Processing config: " + path);
+
+        final CommentedFileConfig file = CommentedFileConfig.builder(path).sync().preserveInsertionOrder().writingMode(WritingMode.REPLACE).build();
+        Bamboo2.getLogger().info("Built config: " + path);
+
+        file.load();
+        Bamboo2.getLogger().info("Loaded config: " +path);
+        SPEC.setConfig(file);
+
+        Bamboo2.getLogger().info("Config done.");
     }
 }
