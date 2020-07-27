@@ -74,7 +74,7 @@ public abstract class BambooUtil {
         if(Configuration.BAMBOO_SPREAD.only_spread_grown.get() && ((BambooBlock) event.getState().getBlock()).canGrow(event.getWorld().getWorld(), event.getPos(), event.getState(), event.getWorld().getWorld().isRemote))
             return;
 
-            double chance = event.getWorld().getWorld().getRandom().nextInt(100) / 100D;
+            double chance = NumberUtil.randomChanceFromPercentile(Configuration.BAMBOO_SPREAD.spread_chance.get(), event.getWorld().getRandom());
 
             if(chance <= Configuration.BAMBOO_SPREAD.spread_chance.get()) {
                 Bamboo2.getLogger().debug(String.format("onCropGrowth: Bamboo spread triggered with value (%.2f <= %.2f) on Block %d %d %d",

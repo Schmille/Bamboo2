@@ -151,7 +151,7 @@ public class Configuration {
 
             spread_chance = builder
                     .comment("Chance that bamboo will spread min = 0.01, max = 1.0")
-                    .defineInRange("spread_chance",0.6, 0.01, 1.0);
+                    .defineInRange("spread_chance",0.6, 0.000001, 1.0);
 
             spread_to = builder
                     .comment("Blocks that bamboo can spread to")
