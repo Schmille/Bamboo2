@@ -1,9 +1,8 @@
 package schmille.bamboo2.common.foodstuff;
 
 import net.minecraft.item.Food;
-import net.minecraft.potion.EffectInstance;
-import net.minecraft.potion.Effects;
 import schmille.bamboo2.common.Configuration;
+import schmille.bamboo2.common.util.BambooUtil;
 import schmille.bamboo2.common.util.NumberUtil;
 
 public class ModFood {
@@ -16,7 +15,7 @@ public class ModFood {
                 .saturation(sat_value);
 
         if (Configuration.RAW_BAMBOO.apply_slowness.get())
-            raw_bamboo_builder.effect(new EffectInstance(Effects.SLOWNESS, Configuration.RAW_BAMBOO.slowness_duration.get() * 20, Configuration.RAW_BAMBOO.slowness_level.get() - 1), NumberUtil.doubleToFloat(Configuration.RAW_BAMBOO.effect_chance.get()));
+            raw_bamboo_builder.effect(BambooUtil::newSlownessEffect, NumberUtil.doubleToFloat(Configuration.RAW_BAMBOO.effect_chance.get()));
 
         return raw_bamboo_builder.build();
     }
@@ -26,7 +25,8 @@ public class ModFood {
         float sat_value = NumberUtil.doubleToFloat(Configuration.COOKED_BAMBOO.saturation_value.get());
 
         Food.Builder cooked_bamboo_builder = new Food.Builder();
-        cooked_bamboo_builder.hunger(Configuration.COOKED_BAMBOO.hunger_value.get())
+        cooked_bamboo_builder
+                .hunger(Configuration.COOKED_BAMBOO.hunger_value.get())
                 .saturation(sat_value);
 
         return cooked_bamboo_builder.build();

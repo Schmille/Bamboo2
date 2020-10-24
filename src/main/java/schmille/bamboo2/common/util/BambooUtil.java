@@ -4,6 +4,8 @@ import net.minecraft.block.AirBlock;
 import net.minecraft.block.BambooBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.potion.EffectInstance;
+import net.minecraft.potion.Effects;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorld;
 import net.minecraftforge.event.world.BlockEvent;
@@ -80,6 +82,10 @@ public abstract class BambooUtil {
                         chance, Configuration.BAMBOO_SPREAD.spread_chance.get(), event.getPos().getX(), event.getPos().getY(), event.getPos().getZ()));
                 doSpread(event.getWorld(), findRoot(event.getWorld(), event.getPos()));
         }
+    }
+
+    public static EffectInstance newSlownessEffect() {
+        return new EffectInstance(Effects.SLOWNESS, Configuration.RAW_BAMBOO.slowness_duration.get() * 20, Configuration.RAW_BAMBOO.slowness_level.get() - 1);
     }
 
 }
