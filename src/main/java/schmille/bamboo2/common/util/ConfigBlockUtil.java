@@ -9,7 +9,7 @@ import java.util.List;
 
 public abstract class ConfigBlockUtil {
 
-    private static final List<ResourceLocation> blocks = new ArrayList();
+    private static final List<ResourceLocation> blocks = new ArrayList<>();
 
     public static boolean canSpreadTo(Block block) {
         tryFillList();
@@ -25,5 +25,4 @@ public abstract class ConfigBlockUtil {
         for(String s : split)
             blocks.add(ResourceLocation.tryCreate(s.trim()));
     }
-
 }

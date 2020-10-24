@@ -20,15 +20,8 @@ public class ModFood {
         return raw_bamboo_builder.build();
     }
 
-    public static Food initCookedBamboo()
-    {
+    public static Food initCookedBamboo() {
         float sat_value = NumberUtil.doubleToFloat(Configuration.COOKED_BAMBOO.saturation_value.get());
-
-        Food.Builder cooked_bamboo_builder = new Food.Builder();
-        cooked_bamboo_builder
-                .hunger(Configuration.COOKED_BAMBOO.hunger_value.get())
-                .saturation(sat_value);
-
-        return cooked_bamboo_builder.build();
+        return (new Food.Builder()).hunger(Configuration.COOKED_BAMBOO.hunger_value.get()).saturation(sat_value).build();
     }
 }

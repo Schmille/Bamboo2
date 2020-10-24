@@ -1,7 +1,6 @@
 package schmille.bamboo2.common;
 
 import com.electronwill.nightconfig.core.file.CommentedFileConfig;
-import com.electronwill.nightconfig.core.io.ParsingMode;
 import com.electronwill.nightconfig.core.io.WritingMode;
 import net.minecraftforge.common.ForgeConfigSpec;
 import schmille.bamboo2.Bamboo2;
@@ -17,13 +16,11 @@ public class Configuration {
     //
     public static final ForgeConfigSpec SPEC = BUILDER.build();
 
-    public static class Composter
-    {
+    public static class Composter {
         public final ForgeConfigSpec.ConfigValue<Boolean> can_decompose;
         public final ForgeConfigSpec.ConfigValue<Double> compost_chance;
 
-        public Composter(ForgeConfigSpec.Builder builder)
-        {
+        public Composter(ForgeConfigSpec.Builder builder) {
             builder.push("Composter");
 
             can_decompose = builder
@@ -38,8 +35,7 @@ public class Configuration {
         }
     }
 
-    public static class RawBamboo
-    {
+    public static class RawBamboo {
         public final ForgeConfigSpec.ConfigValue<Boolean> edible;
         public final ForgeConfigSpec.ConfigValue<Integer> hunger_value;
         public final ForgeConfigSpec.ConfigValue<Double> saturation_value;
@@ -49,8 +45,7 @@ public class Configuration {
         public final ForgeConfigSpec.ConfigValue<Integer> slowness_level;
         public final ForgeConfigSpec.ConfigValue<Double> effect_chance;
 
-        public RawBamboo(ForgeConfigSpec.Builder builder)
-        {
+        public RawBamboo(ForgeConfigSpec.Builder builder) {
             builder.push("Raw Bamboo");
 
             edible = builder
@@ -85,17 +80,14 @@ public class Configuration {
 
             builder.pop();
         }
-
     }
 
-    public static class CookedBamboo
-    {
+    public static class CookedBamboo {
         public final ForgeConfigSpec.ConfigValue<Boolean> cookable;
         public final ForgeConfigSpec.ConfigValue<Integer> hunger_value;
         public final ForgeConfigSpec.ConfigValue<Double> saturation_value;
 
-        public CookedBamboo(ForgeConfigSpec.Builder builder)
-        {
+        public CookedBamboo(ForgeConfigSpec.Builder builder) {
             builder.push("Cooked Bamboo");
 
             cookable = builder
@@ -114,8 +106,7 @@ public class Configuration {
         }
     }
 
-    public static class BambooSpread
-    {
+    public static class BambooSpread {
         public final ForgeConfigSpec.ConfigValue<Boolean> do_bamboo_spread;
         public final ForgeConfigSpec.ConfigValue<Boolean> only_spread_grown;
         public final ForgeConfigSpec.ConfigValue<Integer> spread_x;
@@ -125,8 +116,7 @@ public class Configuration {
         public final ForgeConfigSpec.ConfigValue<Double> spread_chance;
         public final ForgeConfigSpec.ConfigValue<String> spread_to;
 
-        public BambooSpread(ForgeConfigSpec.Builder builder)
-        {
+        public BambooSpread(ForgeConfigSpec.Builder builder) {
             builder.push("Bamboo spread");
 
             do_bamboo_spread = builder

@@ -87,5 +87,4 @@ public abstract class BambooUtil {
     public static EffectInstance newSlownessEffect() {
         return new EffectInstance(Effects.SLOWNESS, Configuration.RAW_BAMBOO.slowness_duration.get() * 20, Configuration.RAW_BAMBOO.slowness_level.get() - 1);
     }
-
 }

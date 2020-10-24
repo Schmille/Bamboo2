@@ -1,7 +1,5 @@
 package schmille.bamboo2.common.util;
 
-import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.Locale;
@@ -14,8 +12,7 @@ public abstract class NumberUtil {
         return doubleToFloat(in,0.3F,999999.999999F,0);
     }
 
-    public static float doubleToFloat(double in, float defaultVal, float upper, float lower)
-    {
+    public static float doubleToFloat(double in, float defaultVal, float upper, float lower) {
         if(in > upper || in < lower)
             return  defaultVal;
 
@@ -42,7 +39,7 @@ public abstract class NumberUtil {
             return 0;
 
         // Assume 0.000001 as lowest reasonable minimum
-        percentile = percentile > 0.000001 ? percentile : 0.000001;
+        percentile = Math.max(percentile, 0.000001);
         int denominator = getPercentileDenominator(percentile);
 
         return random.nextInt(denominator) / ((double) denominator);
