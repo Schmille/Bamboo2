@@ -14,7 +14,7 @@ apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 
-version = '1.16.1_0.3'
+version = '1.16.3_0.3'
 group = 'schmille.bamboo2'
 archivesBaseName = 'bamboo2'
 
