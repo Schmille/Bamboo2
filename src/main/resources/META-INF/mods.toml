@@ -1,9 +1,12 @@
 modLoader="javafml" #mandatory
 loaderVersion="[25,)" #mandatory
+license="BSD 3-Clause License" #mandatory
+issueTrackerURL="https://github.com/Schmille/Bamboo2/issues" #optional
+logoFile="bamboo2_logo.png" #optional
 credits="" #optional
 [[mods]] #mandatory
 modId="bamboo2" #mandatory
-version="1.15.1_0.1" #mandatory
+version="1.16.3_0.3" #mandatory
 displayName="Bamboo 2: Modded Boogaloo" #mandatory
 displayURL="https://github.com/Schmille/Bamboo2" #optional
 authors="Schmille aka CallMeSchmille" #optional
