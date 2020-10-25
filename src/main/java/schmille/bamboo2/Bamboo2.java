@@ -17,7 +17,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import schmille.bamboo2.common.Configuration;
 import schmille.bamboo2.common.crafting.CookCondition;
-import schmille.bamboo2.common.foodstuff.ModFood;
+import schmille.bamboo2.common.util.FoodUtil;
 import schmille.bamboo2.common.items.CookedBambooItem;
 import schmille.bamboo2.common.util.NumberUtil;
 
@@ -50,7 +50,7 @@ public class Bamboo2 {
             try {
                 Field food = ObfuscationReflectionHelper.findField(Item.class, "field_221541_f");
                 food.setAccessible(true);
-                food.set(Items.BAMBOO, ModFood.initRawBamboo());
+                food.set(Items.BAMBOO, FoodUtil.createRawBamboo());
                 getLogger().info("Bamboo food reflection succeeded");
             }
             catch (IllegalAccessException e) {
