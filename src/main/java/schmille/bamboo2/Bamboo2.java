@@ -48,7 +48,7 @@ public class Bamboo2 {
     public static void onLoadComplete(FMLLoadCompleteEvent event) {
         if(Configuration.RAW_BAMBOO.edible.get()) {
             try {
-                Field food = ObfuscationReflectionHelper.findField(Item.class, "field_221541_f");
+                Field food = ObfuscationReflectionHelper.findField(Item.class, "field_219974_q");
                 food.setAccessible(true);
                 food.set(Items.BAMBOO, FoodUtil.createRawBamboo());
                 getLogger().info("Bamboo food reflection succeeded");
