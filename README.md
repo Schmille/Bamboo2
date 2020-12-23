@@ -16,4 +16,6 @@ Then I thought "Isn't Bamboo edible?", so I looked it up and confirmed that ther
  * Bamboo can be cooked in the furnace
     * Can be disabled in config
     
-Requires Forge Version 1.14.4-28.1.0 
+Version 0.3 includes an experimental spread feature. Be careful when changing its configuration!
+
+Requires Forge Version 1.16.4 - 35.1.4
