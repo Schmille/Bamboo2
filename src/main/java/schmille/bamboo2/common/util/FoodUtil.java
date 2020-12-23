@@ -1,13 +1,12 @@
-package schmille.bamboo2.common.foodstuff;
+package schmille.bamboo2.common.util;
 
 import net.minecraft.item.Food;
 import schmille.bamboo2.common.Configuration;
-import schmille.bamboo2.common.util.BambooUtil;
-import schmille.bamboo2.common.util.NumberUtil;
 
-public class ModFood {
+public abstract class FoodUtil {
 
-    public static Food initRawBamboo() {
+    public static Food createRawBamboo() {
+
         float sat_value = NumberUtil.doubleToFloat(Configuration.RAW_BAMBOO.saturation_value.get());
 
         Food.Builder raw_bamboo_builder = new Food.Builder();
@@ -20,7 +19,8 @@ public class ModFood {
         return raw_bamboo_builder.build();
     }
 
-    public static Food initCookedBamboo() {
+    public static Food createCookedBamboo() {
+
         float sat_value = NumberUtil.doubleToFloat(Configuration.COOKED_BAMBOO.saturation_value.get());
         return (new Food.Builder()).hunger(Configuration.COOKED_BAMBOO.hunger_value.get()).saturation(sat_value).build();
     }

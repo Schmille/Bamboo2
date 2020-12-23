@@ -8,6 +8,7 @@ import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLLoadCompleteEvent;
@@ -16,9 +17,11 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import schmille.bamboo2.common.Configuration;
 import schmille.bamboo2.common.crafting.CookCondition;
-import schmille.bamboo2.common.foodstuff.ModFood;
+import schmille.bamboo2.common.util.FoodUtil;
 import schmille.bamboo2.common.items.CookedBambooItem;
 import schmille.bamboo2.common.util.NumberUtil;
+
+import java.lang.reflect.Field;
 
 @Mod(Ref.MOD_ID)
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
@@ -44,7 +47,16 @@ public class Bamboo2 {
     @SubscribeEvent
     public static void onLoadComplete(FMLLoadCompleteEvent event) {
         if(Configuration.RAW_BAMBOO.edible.get()) {
-            Items.BAMBOO.food = ModFood.initRawBamboo();
+            try {
+                Field food = ObfuscationReflectionHelper.findField(Item.class, "field_219974_q");
+                food.setAccessible(true);
+                food.set(Items.BAMBOO, FoodUtil.createRawBamboo());
+                getLogger().info("Bamboo food reflection succeeded");
+            }
+            catch (IllegalAccessException e) {
+                getLogger().error("Bamboo reflection failed");
+                getLogger().trace(e);
+            }
         }
     }
 
