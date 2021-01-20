@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smoking",
+  "ingredient": {
+    "item": "minecraft:bamboo"
+  },
+  "result": "bamboo2:cooked_bamboo",
+  "experience": 0.35,
+  "cookingtime": 100
+}
