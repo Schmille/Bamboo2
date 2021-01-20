@@ -1,5 +1,6 @@
 {
   "conditions": {
-    "cookable": "schmille.bamboo2.common.crafting.CookCondition"
+    "cookable": "schmille.bamboo2.common.crafting.CookCondition",
+    "smokable": "schmille.bamboo2.common.crafting.SmokingCondition"
   }
 }
