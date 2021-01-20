@@ -92,7 +92,7 @@ public class Configuration {
             builder.push("Cooked Bamboo");
 
             cookable = builder
-                    .comment("If false, you will not be able to optain cooked bamboo through smelting")
+                    .comment("If false, you will not be able to obtain cooked bamboo through smelting")
                     .define("cookable",true);
 
             smokable = builder
