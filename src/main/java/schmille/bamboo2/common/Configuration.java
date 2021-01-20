@@ -85,6 +85,7 @@ public class Configuration {
     public static class CookedBamboo {
         public final ForgeConfigSpec.ConfigValue<Boolean> cookable;
         public final ForgeConfigSpec.ConfigValue<Boolean> smokable;
+        public final ForgeConfigSpec.ConfigValue<Boolean> campfire_cooking;
         public final ForgeConfigSpec.ConfigValue<Integer> hunger_value;
         public final ForgeConfigSpec.ConfigValue<Double> saturation_value;
 
@@ -98,6 +99,10 @@ public class Configuration {
             smokable = builder
                     .comment("If false, you will not be able to obtain cooked bamboo through smoking")
                     .define("smokable", true);
+
+            campfire_cooking = builder
+                    .comment("If false, you will not be able to obtain cooked bamboo through campfire cooking")
+                    .define("campfire_cooking", true);
 
             hunger_value = builder
                     .comment("How much hunger will be restored when eaten.")

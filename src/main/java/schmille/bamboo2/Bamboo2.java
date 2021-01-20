@@ -16,6 +16,7 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import schmille.bamboo2.common.Configuration;
+import schmille.bamboo2.common.crafting.CampfireCondition;
 import schmille.bamboo2.common.crafting.CookCondition;
 import schmille.bamboo2.common.crafting.SmokingCondition;
 import schmille.bamboo2.common.util.FoodUtil;
@@ -44,6 +45,7 @@ public class Bamboo2 {
 
         CraftingHelper.register(new CookCondition());
         CraftingHelper.register(new SmokingCondition());
+        CraftingHelper.register(new CampfireCondition());
     }
 
     @SubscribeEvent

@@ -1,5 +1,10 @@
 {
   "type": "minecraft:campfire_cooking",
+  "conditions": [
+    {
+      "type": "bamboo2:campfire_cooking"
+    }
+  ],
   "ingredient": {
     "item": "minecraft:bamboo"
   },
