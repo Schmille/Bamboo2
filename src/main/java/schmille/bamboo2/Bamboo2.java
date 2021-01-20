@@ -56,8 +56,7 @@ public class Bamboo2 {
                 getLogger().info("Bamboo food reflection succeeded");
             }
             catch (IllegalAccessException e) {
-                getLogger().error("Bamboo reflection failed");
-                getLogger().trace(e);
+                getLogger().error("Bamboo reflection failed", e);
             }
         }
     }
