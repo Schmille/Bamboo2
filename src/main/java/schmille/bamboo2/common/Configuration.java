@@ -139,7 +139,7 @@ public class Configuration {
                     .define("only_spread_grown", true);
 
             spread_x = builder
-                    .comment("X-raduis to for spread")
+                    .comment("X-radius to for spread")
                     .define("spread_x", 4);
 
             spread_z = builder
