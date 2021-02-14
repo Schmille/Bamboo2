@@ -14,6 +14,8 @@ apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 
+import net.minecraftforge.gradle.common.task.SignJar
+
 version = '1.16.4_0.3.1'
 group = 'schmille.bamboo2'
 archivesBaseName = 'bamboo2'
@@ -107,6 +109,22 @@ def reobfArtifact = artifacts.add('default', reobfFile) {
     type 'jar'
     builtBy 'reobfJar'
 }
+
+task signJar(type: SignJar, dependsOn: jar) {
+    onlyIf {
+        project.hasProperty('keyStore')
+    }
+
+    inputFile = jar.archivePath
+    outputFile = jar.archivePath
+    keyStore = project.findProperty("keyStore")
+    alias = project.findProperty("keyStoreAlias")
+    storePass = project.findProperty("keyStorePass")
+    keyPass = project.findProperty("keyStoreKeyPass")
+}
+
+build.dependsOn signJar
+
 publishing {
     publications {
         mavenJava(MavenPublication) {
