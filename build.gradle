@@ -16,7 +16,7 @@ apply plugin: 'maven-publish'
 
 import net.minecraftforge.gradle.common.task.SignJar
 
-version = '1.16.4_0.3.1'
+version = '1.16.5_0.3.1'
 group = 'schmille.bamboo2'
 archivesBaseName = 'bamboo2'
 
@@ -80,7 +80,7 @@ minecraft {
 }
 
 dependencies {
-    minecraft 'net.minecraftforge:forge:1.16.4-35.1.4'
+    minecraft 'net.minecraftforge:forge:1.16.5-36.0.22'
     //
     testCompile group: 'junit', name: 'junit', version: '4.12'
 }
