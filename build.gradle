@@ -14,15 +14,13 @@ apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 
-version = '1.16.5_0.3.1'
+version = '1.17.1_0.3.1'
 group = 'schmille.bamboo2'
 archivesBaseName = 'bamboo2'
 
 // Mojang ships Java 16 to end users in 1.17+ instead of Java 8 in 1.16 or lower, so your mod should target Java 16.
 java.toolchain.languageVersion = JavaLanguageVersion.of(16)
 println('Java: ' + System.getProperty('java.version') + ' JVM: ' + System.getProperty('java.vm.version') + '(' + System.getProperty('java.vendor') + ') Arch: ' + System.getProperty('os.arch'))
-
-//sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.16' // Need this here so eclipse task generates correctly.
 
 minecraft {
     mappings channel: 'official', version: '1.17.1'
@@ -84,7 +82,7 @@ minecraft {
 dependencies {
     minecraft 'net.minecraftforge:forge:1.17.1-37.0.104'
     //
-//    testCompile group: 'junit', name: 'junit', version: '4.12'
+    testImplementation group: 'junit', name: 'junit', version: '4.12'
 }
 
 jar {
@@ -94,7 +92,7 @@ jar {
             "Specification-Vendor": "Schmille",
             "Specification-Version": "1", // We are version 1 of ourselves
             "Implementation-Title": project.name,
-            "Implementation-Version": "${version}",
+            "Implementation-Version": rootProject.version,
             "Implementation-Vendor" :"Schmille",
             "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
         ])
