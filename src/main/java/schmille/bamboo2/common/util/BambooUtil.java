@@ -1,12 +1,8 @@
 package schmille.bamboo2.common.util;
 
-import net.minecraft.client.renderer.EffectInstance;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
-import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.level.block.AirBlock;
 import net.minecraft.world.level.block.BambooBlock;
 import net.minecraft.world.level.block.Blocks;
@@ -18,7 +14,6 @@ import schmille.bamboo2.Bamboo2;
 import schmille.bamboo2.common.Configuration;
 import net.minecraft.world.level.LevelAccessor;
 
-import java.io.IOException;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
