@@ -1,18 +1,18 @@
 package schmille.bamboo2;
 
-import net.minecraft.block.ComposterBlock;
-import net.minecraft.item.Item;
-import net.minecraft.item.Items;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.level.block.ComposterBlock;
 import net.minecraftforge.common.crafting.CraftingHelper;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLLoadCompleteEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.fml.util.ObfuscationReflectionHelper;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import schmille.bamboo2.common.Configuration;
@@ -40,7 +40,7 @@ public class Bamboo2 {
 
     private void commonSetup(FMLCommonSetupEvent evt) {
         if(Configuration.COMPOSTER.can_decompose.get()) {
-            ComposterBlock.CHANCES.computeFloat(Items.BAMBOO, (iItemProvider, aFloat) -> NumberUtil.doubleToFloat(Configuration.COMPOSTER.compost_chance.get()));
+            ComposterBlock.COMPOSTABLES.computeFloat(Items.BAMBOO, (iItemProvider, aFloat) -> NumberUtil.doubleToFloat(Configuration.COMPOSTER.compost_chance.get()));
         }
 
         CraftingHelper.register(new CookCondition());
@@ -52,7 +52,7 @@ public class Bamboo2 {
     public static void onLoadComplete(FMLLoadCompleteEvent event) {
         if(Configuration.RAW_BAMBOO.edible.get()) {
             try {
-                Field food = ObfuscationReflectionHelper.findField(Item.class, "field_219974_q");
+                Field food = ObfuscationReflectionHelper.findField(Item.class, "f_41380_");
                 food.setAccessible(true);
                 food.set(Items.BAMBOO, FoodUtil.createRawBamboo());
                 getLogger().info("Bamboo food reflection succeeded");

@@ -1,7 +1,7 @@
 package schmille.bamboo2.common.util;
 
-import net.minecraft.block.Block;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.block.Block;
 import schmille.bamboo2.common.Configuration;
 
 import java.util.ArrayList;
@@ -23,6 +23,6 @@ public abstract class ConfigBlockUtil {
 
         String[] split = Configuration.BAMBOO_SPREAD.spread_to.get().split(",");
         for(String s : split)
-            blocks.add(ResourceLocation.tryCreate(s.trim()));
+            blocks.add(ResourceLocation.tryParse(s.trim()));
     }
 }

@@ -1,19 +1,24 @@
 package schmille.bamboo2.common.util;
 
-import net.minecraft.block.AirBlock;
-import net.minecraft.block.BambooBlock;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.potion.EffectInstance;
-import net.minecraft.potion.Effects;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IWorld;
+import net.minecraft.client.renderer.EffectInstance;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.item.alchemy.Potions;
+import net.minecraft.world.level.block.AirBlock;
+import net.minecraft.world.level.block.BambooBlock;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import schmille.bamboo2.Bamboo2;
 import schmille.bamboo2.common.Configuration;
+import net.minecraft.world.level.LevelAccessor;
 
+import java.io.IOException;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
@@ -21,24 +26,24 @@ import java.util.List;
 @Mod.EventBusSubscriber
 public abstract class BambooUtil {
 
-    public static void doSpread(IWorld world, BlockPos pos) {
-        Iterable<BlockPos> i = BlockPos.getAllInBoxMutable(
-               pos.add(-Configuration.BAMBOO_SPREAD.spread_x.get(), -Configuration.BAMBOO_SPREAD.spread_y_bottom.get(), -Configuration.BAMBOO_SPREAD.spread_z.get()),
-               pos.add(Configuration.BAMBOO_SPREAD.spread_x.get(), Configuration.BAMBOO_SPREAD.spread_y_top.get(), Configuration.BAMBOO_SPREAD.spread_z.get()));
+    public static void doSpread(LevelAccessor world, BlockPos pos) {
+        Iterable<BlockPos> i = BlockPos.withinManhattan(
+               pos.mutable().move(-Configuration.BAMBOO_SPREAD.spread_x.get(), -Configuration.BAMBOO_SPREAD.spread_y_bottom.get(), -Configuration.BAMBOO_SPREAD.spread_z.get()),
+               Configuration.BAMBOO_SPREAD.spread_x.get(), Configuration.BAMBOO_SPREAD.spread_y_top.get(), Configuration.BAMBOO_SPREAD.spread_z.get());
 
         List<BlockPos> positions = new LinkedList<>();
         for(BlockPos bp: i)
-            positions.add(bp.toImmutable());
+            positions.add(bp);
 
         Collections.shuffle(positions);
         for(BlockPos bp : positions) {
             BlockState state = world.getBlockState(bp);
 
             if(state.getBlock() instanceof AirBlock) {
-                BlockState down = world.getBlockState(bp.down(1));
+                BlockState down = world.getBlockState(bp.below(1));
 
                 if(ConfigBlockUtil.canSpreadTo(down.getBlock())) {
-                    world.setBlockState(bp, Blocks.BAMBOO_SAPLING.getDefaultState(), (1|2));
+                    world.setBlock(bp, Blocks.BAMBOO_SAPLING.defaultBlockState(), (1|2));
                     Bamboo2.getLogger().debug(String.format("doSpread: Placed bamboo sapling at %d %d %d", bp.getX(), bp.getY(), bp.getZ()));
                     break;
                 }
@@ -46,16 +51,16 @@ public abstract class BambooUtil {
         }
     }
 
-    public static BlockPos findRoot(IWorld world, BlockPos pos) {
+    public static BlockPos findRoot(LevelAccessor world, BlockPos pos) {
         BlockPos last = pos;
 
         for(int i = 0; i < 255; i++) {
-            BlockState state = world.getBlockState(pos.down(i));
+            BlockState state = world.getBlockState(pos.below(i));
 
             if(!state.getBlock().equals(Blocks.BAMBOO))
                 break;
 
-            last = pos.down(i);
+            last = pos.below(i);
         }
 
         return last;
@@ -67,13 +72,13 @@ public abstract class BambooUtil {
         if(!Configuration.BAMBOO_SPREAD.do_bamboo_spread.get())
             return;
 
-        if(event.getWorld().isRemote())
+        if(event.getWorld().isClientSide())
             return;
 
         if(!(event.getState().getBlock() instanceof BambooBlock))
             return;
 
-        if(Configuration.BAMBOO_SPREAD.only_spread_grown.get() && ((BambooBlock) event.getState().getBlock()).canGrow(event.getWorld(), event.getPos(), event.getState(), event.getWorld().isRemote()))
+        if(Configuration.BAMBOO_SPREAD.only_spread_grown.get() && !((BambooBlock) event.getState().getBlock()).canSurvive(event.getState(), event.getWorld(), event.getPos()))
             return;
 
             double chance = NumberUtil.randomChanceFromPercentile(Configuration.BAMBOO_SPREAD.spread_chance.get(), event.getWorld().getRandom());
@@ -84,7 +89,7 @@ public abstract class BambooUtil {
         }
     }
 
-    public static EffectInstance newSlownessEffect() {
-        return new EffectInstance(Effects.SLOWNESS, Configuration.RAW_BAMBOO.slowness_duration.get() * 20, Configuration.RAW_BAMBOO.slowness_level.get() - 1);
+    public static MobEffectInstance newSlownessEffect() {
+        return new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, Configuration.RAW_BAMBOO.slowness_duration.get() * 20, Configuration.RAW_BAMBOO.slowness_level.get() - 1);
     }
 }
