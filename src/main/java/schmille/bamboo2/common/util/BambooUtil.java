@@ -61,6 +61,7 @@ public abstract class BambooUtil {
         return last;
     }
 
+    @SuppressWarnings("unused")
     @SubscribeEvent
     public static void onCropGrowth(BlockEvent.CropGrowEvent event) {
 

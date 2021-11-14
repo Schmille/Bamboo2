@@ -48,6 +48,7 @@ public class Bamboo2 {
         CraftingHelper.register(new CampfireCondition());
     }
 
+    @SuppressWarnings("unused")
     @SubscribeEvent
     public static void onLoadComplete(FMLLoadCompleteEvent event) {
         if(Configuration.RAW_BAMBOO.edible.get()) {
@@ -63,6 +64,7 @@ public class Bamboo2 {
         }
     }
 
+    @SuppressWarnings("unused")
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> event) {
         event.getRegistry().register(new CookedBambooItem());
