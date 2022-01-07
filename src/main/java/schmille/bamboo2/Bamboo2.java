@@ -19,8 +19,8 @@ import schmille.bamboo2.common.Configuration;
 import schmille.bamboo2.common.crafting.CampfireCondition;
 import schmille.bamboo2.common.crafting.CookCondition;
 import schmille.bamboo2.common.crafting.SmokingCondition;
-import schmille.bamboo2.common.util.FoodUtil;
 import schmille.bamboo2.common.items.CookedBambooItem;
+import schmille.bamboo2.common.util.FoodUtil;
 import schmille.bamboo2.common.util.NumberUtil;
 
 import java.lang.reflect.Field;
@@ -29,7 +29,7 @@ import java.lang.reflect.Field;
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
 public class Bamboo2 {
 
-    private static final Logger LOGGER = LogManager.getLogger();
+    private static final Logger LOGGER = LogManager.getLogger(Ref.MOD_ID);
 
     public Bamboo2() {
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Configuration.SPEC);
