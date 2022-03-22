@@ -52,8 +52,11 @@ public class Bamboo2 {
     public static void onLoadComplete(FMLLoadCompleteEvent event) {
         if(Configuration.RAW_BAMBOO.edible.get()) {
             try {
-                Field food = ObfuscationReflectionHelper.findField(Item.class, "f_41380_");
-                food.setAccessible(true);
+                Field food = getField();
+                if (!food.trySetAccessible()) {
+                    getLogger().error("Bamboo reflection failed! Could not make accessible!");
+                    return;
+                }
                 food.set(Items.BAMBOO, FoodUtil.createRawBamboo());
                 getLogger().info("Bamboo food reflection succeeded");
             }
@@ -67,6 +70,10 @@ public class Bamboo2 {
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> event) {
         event.getRegistry().register(new CookedBambooItem());
+    }
+
+    private static Field getField() {
+        return ObfuscationReflectionHelper.findField(Item.class, "f_41380_");
     }
 
     public static Logger getLogger() {
