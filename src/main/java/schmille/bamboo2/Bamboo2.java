@@ -34,7 +34,6 @@ public class Bamboo2 {
     public Bamboo2() {
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Configuration.SPEC);
         Configuration.loadConfig();
-
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::commonSetup);
     }
 
