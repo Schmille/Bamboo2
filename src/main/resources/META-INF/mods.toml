@@ -1,5 +1,5 @@
 modLoader="javafml" #mandatory
-loaderVersion="[37,)" #mandatory
+loaderVersion="[39,)" #mandatory
 license="BSD 3-Clause License" #mandatory
 issueTrackerURL="https://github.com/Schmille/Bamboo2/issues" #optional
 logoFile="bamboo2_logo.png" #optional
