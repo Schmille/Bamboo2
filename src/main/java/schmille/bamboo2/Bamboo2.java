@@ -37,20 +37,10 @@ public class Bamboo2 {
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::commonSetup);
     }
 
-    private void commonSetup(FMLCommonSetupEvent evt) {
-        if(Configuration.COMPOSTER.can_decompose.get()) {
-            ComposterBlock.COMPOSTABLES.computeFloat(Items.BAMBOO, (iItemProvider, aFloat) -> NumberUtil.doubleToFloat(Configuration.COMPOSTER.compost_chance.get()));
-        }
-
-        CraftingHelper.register(new CookCondition());
-        CraftingHelper.register(new SmokingCondition());
-        CraftingHelper.register(new CampfireCondition());
-    }
-
     @SuppressWarnings("unused")
     @SubscribeEvent
     public static void onLoadComplete(FMLLoadCompleteEvent event) {
-        if(Configuration.RAW_BAMBOO.edible.get()) {
+        if (Configuration.RAW_BAMBOO.edible.get()) {
             try {
                 Field food = getField();
                 if (!food.trySetAccessible()) {
@@ -59,8 +49,7 @@ public class Bamboo2 {
                 }
                 food.set(Items.BAMBOO, FoodUtil.createRawBamboo());
                 getLogger().info("Bamboo food reflection succeeded");
-            }
-            catch (IllegalAccessException e) {
+            } catch (IllegalAccessException e) {
                 getLogger().error("Bamboo reflection failed", e);
             }
         }
@@ -78,6 +67,16 @@ public class Bamboo2 {
 
     public static Logger getLogger() {
         return LOGGER;
+    }
+
+    private void commonSetup(FMLCommonSetupEvent evt) {
+        if (Configuration.COMPOSTER.can_decompose.get()) {
+            ComposterBlock.COMPOSTABLES.computeFloat(Items.BAMBOO, (iItemProvider, aFloat) -> NumberUtil.doubleToFloat(Configuration.COMPOSTER.compost_chance.get()));
+        }
+
+        CraftingHelper.register(new CookCondition());
+        CraftingHelper.register(new SmokingCondition());
+        CraftingHelper.register(new CampfireCondition());
     }
 
 }
