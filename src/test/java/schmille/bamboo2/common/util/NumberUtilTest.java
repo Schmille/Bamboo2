@@ -32,6 +32,22 @@ public class NumberUtilTest {
     }
 
     @Test
+    public void testDoubleToFloatDoubleMax() {
+        final double input = Double.MAX_VALUE;
+        final float output = NumberUtil.doubleToFloat(input);
+
+        Assert.assertEquals(0.3, output, 0.000001);
+    }
+
+    @Test
+    public void testDoubleToFloatDoubleMin() {
+        final double input = Double.MIN_VALUE;
+        final float output = NumberUtil.doubleToFloat(input, 0.3F, 1.0F, 0F);
+
+        Assert.assertEquals(0.3, output, 0.000001);
+    }
+
+    @Test
     public void testGetPercentileDenominator() {
         final double percentile = 0.003;
         final int output = NumberUtil.getPercentileDenominator(percentile);
