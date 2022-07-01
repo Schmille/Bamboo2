@@ -34,10 +34,11 @@ public abstract class NumberUtil {
         if (in > upper || in < lower)
             return defaultVal;
 
-        DecimalFormat df = (DecimalFormat) NumberFormat.getNumberInstance(Locale.US);
-        df.applyLocalizedPattern("000000.000000");
-        String s = df.format(in);
-        return Float.parseFloat(s);
+        if (in > Float.MAX_VALUE || in < Float.MIN_VALUE)
+            return defaultVal;
+
+        Number number = in;
+        return number.floatValue();
     }
 
     /**
