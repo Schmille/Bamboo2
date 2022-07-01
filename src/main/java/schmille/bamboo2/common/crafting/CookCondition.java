@@ -21,7 +21,7 @@ public class CookCondition implements IConditionSerializer {
             }
 
             @Override
-            public boolean test() {
+            public boolean test(IContext context) {
                 return Configuration.COOKED_BAMBOO.cookable.get();
             }
         };

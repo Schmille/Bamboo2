@@ -22,9 +22,10 @@ public class CampfireCondition implements IConditionSerializer {
             }
 
             @Override
-            public boolean test() {
+            public boolean test(IContext context) {
                 return Configuration.COOKED_BAMBOO.campfire_cooking.get();
             }
+
         };
     }
 
