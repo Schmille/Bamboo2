@@ -4,7 +4,6 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.ComposterBlock;
 import net.minecraftforge.common.crafting.CraftingHelper;
-import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
@@ -19,7 +18,7 @@ import schmille.bamboo2.common.Configuration;
 import schmille.bamboo2.common.crafting.CampfireCondition;
 import schmille.bamboo2.common.crafting.CookCondition;
 import schmille.bamboo2.common.crafting.SmokingCondition;
-import schmille.bamboo2.common.items.CookedBambooItem;
+import schmille.bamboo2.common.items.Register;
 import schmille.bamboo2.common.util.FoodUtil;
 import schmille.bamboo2.common.util.NumberUtil;
 
@@ -35,6 +34,8 @@ public class Bamboo2 {
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Configuration.SPEC);
         Configuration.loadConfig();
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::commonSetup);
+
+        Register.ITEMS.register(FMLJavaModLoadingContext.get().getModEventBus());
     }
 
     @SuppressWarnings("unused")
@@ -53,12 +54,6 @@ public class Bamboo2 {
                 getLogger().error("Bamboo reflection failed", e);
             }
         }
-    }
-
-    @SuppressWarnings("unused")
-    @SubscribeEvent
-    public static void registerItems(RegistryEvent.Register<Item> event) {
-        event.getRegistry().register(new CookedBambooItem());
     }
 
     private static Field getField() {

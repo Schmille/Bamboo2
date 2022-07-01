@@ -6,8 +6,9 @@ import schmille.bamboo2.common.util.FoodUtil;
 
 public class CookedBambooItem extends Item {
 
+    public static final String REGISTRY_NAME = "cooked_bamboo";
+
     public CookedBambooItem() {
         super(new Item.Properties().tab(CreativeModeTab.TAB_FOOD).food(FoodUtil.createCookedBamboo()));
-        this.setRegistryName("cooked_bamboo");
     }
 }
