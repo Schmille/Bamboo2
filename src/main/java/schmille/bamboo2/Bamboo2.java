@@ -73,5 +73,4 @@ public class Bamboo2 {
         CraftingHelper.register(new SmokingCondition());
         CraftingHelper.register(new CampfireCondition());
     }
-
 }
