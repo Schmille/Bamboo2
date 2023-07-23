@@ -14,7 +14,7 @@ apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 
-version = '1.19.3_0.4'
+version = '1.20.1_0.4'
 group = 'schmille.bamboo2'
 archivesBaseName = 'bamboo2'
 
@@ -90,7 +90,7 @@ minecraft {
 }
 
 dependencies {
-    minecraft 'net.minecraftforge:forge:1.19.3-44.1.0'
+    minecraft 'net.minecraftforge:forge:1.20.1-47.1.0'
     //
     testImplementation group: 'junit', name: 'junit', version: '4.12'
 }
